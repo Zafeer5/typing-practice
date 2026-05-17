@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Space Grotesk", sans-serif;
+
+  --color-tech-green: #00ff41;
+  --color-tech-bg: #0a0a0c;
+  --color-tech-gray: #1a1a1e;
+  --color-tech-accent: #33333b;
+  --color-tech-red: #ff3e3e;
+
+  --animate-glitch: glitch 0.2s ease-in-out;
+  --animate-blink: blink 1s step-end infinite;
+
+  @keyframes glitch {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-2px); }
+    80% { transform: translateX(2px); }
+    100% { transform: translateX(0); }
+  }
+
+  @keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-tech-bg text-white font-mono antialiased overflow-hidden;
+    background-image: 
+      linear-gradient(rgba(0, 255, 65, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 65, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+@layer utilities {
+  .tech-border {
+    @apply border border-tech-accent;
+  }
+  .tech-glow-green {
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+  }
+  .scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 100;
+    background: linear-gradient(0deg, rgba(0, 255, 65, 0) 0%, rgba(0, 255, 65, 0.05) 50%, rgba(0, 255, 65, 0) 100%);
+    opacity: 0.1;
+    position: absolute;
+    bottom: 100%;
+    animation: scanline 10s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% { bottom: 100%; }
+    100% { bottom: -100px; }
+  }
+}
